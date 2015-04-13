@@ -93,7 +93,7 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 	
 	@HideInInspector
 	public var moveDir : Vector3;
-    
+
     private var _useIK : boolean;
 
 	function Awake()
