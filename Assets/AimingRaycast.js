@@ -13,9 +13,6 @@ class AimingRaycast extends MonoBehaviour
 	// A reference of LineRendere which is responsible for drawing the visual ray
 	public var rayLine : LineRenderer;
 	
-	// Define the hit layer for our weapon
-	public var myWeapon : Gun;
-	
 	// This controller gives a information like whether solider are aiming and where is the camera
 	public var controller : SoldierController;
 	
