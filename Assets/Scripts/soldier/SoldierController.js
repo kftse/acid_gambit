@@ -23,6 +23,7 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 	public var minCarDistance : float;
 	
 	public var soldierCamera : Camera;
+	
 //	public var chat : uLinkChatGUI;
 		
 	static public var dead : boolean;
@@ -249,7 +250,6 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 			delta -= 360;
 		var asdf : float = Mathf.MoveTowards(currentAngle, currentAngle + delta, Time.deltaTime * maxRotationSpeed);
 		soldierTransform.localRotation.eulerAngles.y = asdf;
-
 	}
 	
 	function GetUserInputs()
