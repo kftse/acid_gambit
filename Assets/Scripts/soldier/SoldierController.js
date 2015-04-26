@@ -302,12 +302,6 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 		if (weaponSystem.currentGun != null)
 			weaponSystem.currentGun.Shoot();
 	}
-
-	@RPC
-	function ChangeWeapon(weapon : int)
-	{
-		weaponSystem.ChangeToGun(weapon);
-	}
 }
 
 //@script RequireComponent (uLink.NetworkView)

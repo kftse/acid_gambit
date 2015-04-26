@@ -133,11 +133,6 @@ class SoldierAnimations extends MonoBehaviour
 		{
 			animation.CrossFade("Reload" + soldier.currentWeaponName, 0.1);
 		}
-		
-		if(currentWeapon > 0 && fire)
-		{
-			animation.CrossFade("FireM203");
-		}
 	}
 	
 	function CrossFadeUp (weight : float, fadeTime : float) : float {
