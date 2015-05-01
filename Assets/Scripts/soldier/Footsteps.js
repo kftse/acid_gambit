@@ -5,6 +5,7 @@
 	public var metalSteps : AudioClip[];
 	public var concreteSteps : AudioClip[];
 	public var sandSteps : AudioClip[];
+	public var waterSteps : AudioClip[];
 	
 	private var cc : CharacterController;
 	private var t : Transform;
@@ -67,6 +68,11 @@
 		{
 			volume = 1.0;
 			return sandSteps[Random.Range(0, sandSteps.length)];
+		}
+		else if(cTag == "water")
+		{
+			volume = 1.0;
+			return waterSteps[Random.Range(0, waterSteps.length)];
 		}
 		else
 		{
