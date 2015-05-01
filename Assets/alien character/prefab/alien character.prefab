@@ -884,6 +884,7 @@ GameObject:
   - 4: {fileID: 400116}
   - 95: {fileID: 9500000}
   - 136: {fileID: 13645064}
+  - 114: {fileID: 11491290}
   m_Layer: 0
   m_Name: alien character
   m_TagString: alien
@@ -1699,6 +1700,17 @@ Animator:
   m_ApplyRootMotion: 1
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11491290
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c357aefed54474e62a3e5b9745201ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!136 &13645064
 CapsuleCollider:
   m_ObjectHideFlags: 1

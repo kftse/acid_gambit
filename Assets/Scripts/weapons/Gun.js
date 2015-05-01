@@ -336,9 +336,11 @@ class Gun extends MonoBehaviour
 
 		// added by Carlos
 		if (Physics.Raycast(camRay.origin + camRay.direction * 0.1, camRay.direction, hit, fireRange)){
-			Debug.Log("hit " + hit.collider.tag);
+			Debug.Log("[Gun] hit " + hit.collider.tag);
 			if (hit.collider.tag == "alien"){
-				Destroy(hit.collider.gameObject);
+				var enemy : Enemy;
+				enemy = hit.collider.GetComponent.<Enemy>();
+				if (enemy) enemy.Hit();
 				return;
 			}
 		}
