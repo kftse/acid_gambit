@@ -409,7 +409,7 @@ class Gun extends MonoBehaviour
 		
 			if(!body.isKinematic)
 			{
-    				var direction : Vector3 = hit.collider.transform.position - weaponTransformReference.position;
+    			var direction : Vector3 = hit.collider.transform.position - weaponTransformReference.position;
 				body.AddForceAtPosition(direction.normalized * pushPower, hit.point, ForceMode.Impulse);
 			}
 		}
