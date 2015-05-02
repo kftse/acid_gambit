@@ -11,6 +11,7 @@ TagManager:
   - water
   - dirt
   - glass
+  - RedEnemy
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

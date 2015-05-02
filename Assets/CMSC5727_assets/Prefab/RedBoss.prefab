@@ -133,7 +133,7 @@ GameObject:
   - 114: {fileID: 11408986}
   m_Layer: 0
   m_Name: RedBoss
-  m_TagString: alien
+  m_TagString: RedEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1001,7 +1001,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109002}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -62.4000015, y: 8, z: 26.5}
+  m_LocalPosition: {x: -69.0100021, y: 3.46000004, z: 26.5}
   m_LocalScale: {x: 8, y: 8, z: 8}
   m_Children:
   - {fileID: 409004}
@@ -1719,7 +1719,7 @@ CapsuleCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 109002}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 67db31eead11e8d6d00011d98d76c639, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: .5
@@ -1738,7 +1738,7 @@ SkinnedMeshRenderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: d57b11a047a228a459e782f5bc7ee432, type: 2}
+  - {fileID: 2100000, guid: 8923160e74a27455899b411f7b9dd2c1, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
