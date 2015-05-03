@@ -1,15 +1,27 @@
 ﻿#pragma strict
 
-var isDead : boolean;
-var anim : Animator;
-//var deadHash : int = Animator.StringToHash("dead");
+public var flightDistance : float;
+private var isDead : boolean;
+private var anim : Animator;
+private var player : GameObject;
+//private var deadHash : int = Animator.StringToHash("dead");
 
 function Start () {
 	anim = GetComponent("Animator");
+	player = GameObject.FindGameObjectWithTag ("Player");
 }
 
 function Update () {
+	DetectPlayer(player.transform.position, gameObject.transform.position);
+}
 
+function DetectPlayer(v1 : Vector3, v2 : Vector3){
+	//Debug.Log("[Enemy] player: " + v1.x + "," + v1.y + "," + v1.z);
+	//Debug.Log("[Enemy] enemy: " + v2.x + "," + v2.y + "," + v2.z);
+	var d : float = Mathf.Sqrt(Mathf.Pow(v1.x - v2.x, 2) + Mathf.Pow(v1.y - v2.y, 2) + Mathf.Pow(v1.z - v2.z, 2));
+	var flight : boolean = d < flightDistance;
+	if (flight) Debug.Log("[Enemy] detected player: " + d);
+	anim.SetBool("flight", flight);
 }
 
 function Hit() {
