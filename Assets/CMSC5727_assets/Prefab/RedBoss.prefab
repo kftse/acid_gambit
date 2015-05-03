@@ -1711,8 +1711,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c357aefed54474e62a3e5b9745201ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDead: 0
-  anim: {fileID: 0}
+  flightDistance: 50
+  rotationSpeed: 10
 --- !u!136 &13608986
 CapsuleCollider:
   m_ObjectHideFlags: 1
