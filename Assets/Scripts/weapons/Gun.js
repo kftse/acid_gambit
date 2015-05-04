@@ -94,7 +94,10 @@ class Gun extends MonoBehaviour
 	public var pushPower : float = 3.0;
 	
 	private var soldierCamera : SoldierCamera;
+	
 	public var soldierController : SoldierController;
+	
+	public var power : int = 1; // added by Carlos
 
 	function Start()
 	{
@@ -335,17 +338,6 @@ class Gun extends MonoBehaviour
 		
 		camRay = new Ray(soldierController.cameraPosition, soldierController.cameraRotation * Vector3.forward);
 
-		// added by Carlos
-		if (Physics.Raycast(camRay.origin + camRay.direction * 0.1, camRay.direction, hit, fireRange)){
-			Debug.Log("[Gun] hit " + hit.collider.tag);
-			if (hit.collider.tag == "alien"){
-				var enemy : Enemy;
-				enemy = hit.collider.GetComponent.<Enemy>();
-				if (enemy) enemy.Hit();
-				return;
-			}
-		}
-
 		if(weaponTransformReference == null)
 		{
 			origin = camRay.origin;
@@ -383,7 +375,8 @@ class Gun extends MonoBehaviour
 
 		if(Physics.Raycast(origin, dir, hit, fireRange, hitLayer))
 		{
-			hit.collider.gameObject.SendMessage("Hit", hit, SendMessageOptions.DontRequireReceiver);
+			// edited by Carlos
+			hit.collider.gameObject.SendMessage("Hit", /*hit*/power, SendMessageOptions.DontRequireReceiver);
 			GenerateGraphicStuff(hit);
 			
 			if(hit.collider.tag == "glass")
