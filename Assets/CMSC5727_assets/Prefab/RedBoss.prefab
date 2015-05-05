@@ -1717,6 +1717,9 @@ MonoBehaviour:
   bullet: {fileID: 100002, guid: 61ad8894020422b42a6738b9fee1cf4d, type: 2}
   fireRate: 3
   fireSpeed: 5
+  hitLayer:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!136 &13608986
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -107,8 +107,7 @@ class Grenade extends MonoBehaviour
 		{
 			// edited by Carlos
 			var exp : GameObject = GameObject.Instantiate(explosionEmitter, transform.position, Quaternion.identity);
-			yield WaitForSeconds(10);
-    		Destroy(exp);
+			Destroy(exp, 2);
 		}
 	}
 	

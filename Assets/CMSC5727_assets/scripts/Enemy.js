@@ -6,7 +6,7 @@ public var energy : int;
 public var bullet : GameObject;
 public var fireRate : float;
 public var fireSpeed : int;
-//public var soldierController : SoldierController;
+public var hitLayer : LayerMask;
 private var nextFire : float = 0;
 private var dead : boolean;
 private var anim : Animator;
@@ -41,13 +41,15 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
 
  		// fire
  		if (nextFire < Time.time){
- 			//TODO
 // 			var hit : RaycastHit;
-// 			var cameraDirection = soldierController.cameraRotation * Vector3.forward;
-//			var camRay2 : Ray = new Ray(soldierController.cameraPosition, cameraDirection);
-// 			if (Physics.Raycast(camRay2.origin, camRay2.direction, hit, flightDistance)){
+// 			var maxDist : float = d * 0.5f;
+// 			var direction = r * Vector3.forward;
+ 			
+ 			// if the enemy and player without blocking 
+// 			if (Physics.Raycast(v2, direction, hit, maxDist, hitLayer)){
+// 				Debug.Log("[Enemy] Raycast player: " + hit.collider.gameObject.layer);
  				Fire(t1);
- 				nextFire = Time.time + fireRate;
+ 				nextFire = Time.time + fireRate + 0.5f;
 // 			}
  		}
 	}
