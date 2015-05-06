@@ -348,9 +348,9 @@ MonoBehaviour:
   minY: -50
   smoke: {fileID: 100000}
   explosionEmitter: {fileID: 100000, guid: f7172e385f8d34a0da41e713a8d1bb49, type: 2}
-  explosionTime: 3
-  explosionRadius: 3.5
-  power: 320
+  explosionTime: 2
+  explosionRadius: 3
+  power: 20
   soldierCamera: {fileID: 0}
   nearSounds:
   - {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}

@@ -7,79 +7,39 @@ class SoldierDamageControl extends MonoBehaviour
 	// HP related
 	public var maxHealthPoint : int = 100;
 	public var currentHealthPoint : int = 100;
+	public var dyingHealthPoint : int = 20;
 	public var hpBar : UI.Slider;
 	public var heartImage : UI.Image;
 	
-	// HP regeneration
-	public var regenBase : int = 50;
-	public var recoverTime : float;
+	// HP recover
+	public var recover : int = 1;
+	public var recoverTime : float = 2;
+	private var nextRecover : float = 0;
 	
 	public var hitSound : AudioClip;
 	public var dyingSound : AudioClip;
 	
-	function HitSoldier(hit : String)
-	{
-		if(GameManager.receiveDamage)
-		{
-			/*
-			life -= 0.05;
-			
-			if(!audio.isPlaying)
-			{
-				if(life < 0.5 && (Random.Range(0, 100) < 30))
-				{
-					audio.clip = dyingSound;
-				}
-				else
-				{
-					audio.clip = hitSounds[Random.Range(0, hitSounds.length)];
-				}
-				
-				audio.Play();
-			}
-			
-			recoverTime = (1.0 - life) * 10.0;
-			
-			if(hit == "Dummy")
-			{
-				TrainingStatistics.dummiesHit++;
-			}
-			else if(hit == "Turret")
-			{
-				TrainingStatistics.turretsHit++;
-			}
-			
-			if(life <= 0.0)
-			{
-				SoldierController.dead = true;
-			}
-			*/
+	function Update(){
+		// HP recover
+		if (nextRecover < Time.time){
+			currentHealthPoint = Mathf.Min(currentHealthPoint + recover, maxHealthPoint);
+			Debug.Log("[Player] Recover +" + recover + " = " + currentHealthPoint);
+			updatePlayerStatUI();
+			nextRecover = Time.time + recoverTime;
 		}
 	}
-	
-	function Update()
-	{
-		if(this.recoverTime <= 0.0)
-		{
-			// Regenerate HP slowly
-			this.currentHealthPoint += this.regenBase * Time.deltaTime;
-			
-			// Make sure HP within [0, this.maxHealthPoint]
-			this.currentHealthPoint = Mathf.Clamp(
-				this.currentHealthPoint,
-				0.0,
-				this.maxHealthPoint
-			);
-		} else {
-			this.recoverTime -= Time.deltaTime;
-		}
-		
-		this.updatePlayerStatUI();
-	}
-	
 	
 	// Helper method updates player's hp
 	function updatePlayerStatUI() {
-		this.hpBar.value = this.currentHealthPoint;
+		hpBar.value = currentHealthPoint;
+	}
+	
+	function Destruct(power : int) {
+		currentHealthPoint -= power;
+		Debug.Log("[Player] Destruct -" + power + " = " + currentHealthPoint);
+		updatePlayerStatUI();
+		if (currentHealthPoint <= dyingHealthPoint){
+			//TODO - play dying audio clip
+		}
 	}
 }

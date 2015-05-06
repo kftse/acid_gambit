@@ -10,7 +10,7 @@ class Grenade extends MonoBehaviour
 	public var explosionEmitter : GameObject;
 	public var explosionTime : float;
 	public var explosionRadius : float;
-	public var power : float = 3200;
+	public var power : int = 20;
 	private var timer : float;
 
 	public var soldierCamera : SoldierCamera;
@@ -70,7 +70,7 @@ class Grenade extends MonoBehaviour
 		{
 			for(var c : int = 0; c < col.length; c++)
 			{
-				col[c].gameObject.SendMessage("Destruct", SendMessageOptions.DontRequireReceiver);
+				col[c].gameObject.SendMessage("Destruct", power, SendMessageOptions.DontRequireReceiver);
 				
 				body = null;
 				body = col[c].gameObject.rigidbody;
