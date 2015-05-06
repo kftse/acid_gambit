@@ -1711,10 +1711,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c357aefed54474e62a3e5b9745201ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightDistance: 8
+  flightDistance: 12
   rotationSpeed: 10
   energy: 2
   bullet: {fileID: 100002, guid: 61ad8894020422b42a6738b9fee1cf4d, type: 2}
+  fireRange: .400000006
   fireRate: 4
   fireSpeed: 5
   hitLayer:

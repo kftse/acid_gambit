@@ -4,6 +4,7 @@ public var flightDistance : float;
 public var rotationSpeed : float;
 public var energy : int;
 public var bullet : GameObject;
+public var fireRange : float = 0.4f;
 public var fireRate : float;
 public var fireSpeed : int;
 public var hitLayer : LayerMask;
@@ -40,7 +41,7 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
  		t2.rotation = Quaternion.Slerp(t2.rotation, r, rotationSpeed * Time.deltaTime);
 
  		// fire
- 		if (nextFire < Time.time){
+ 		if (d < flightDistance * fireRange && nextFire < Time.time){
 // 			var hit : RaycastHit;
 // 			var maxDist : float = d * 0.5f;
 // 			var direction = r * Vector3.forward;
