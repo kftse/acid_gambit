@@ -280,40 +280,40 @@ class MainMenuScreen extends MonoBehaviour
 		var dRect = damageRect;
 		dRect.x = panelRightRect.x + ((panelRightRect.width - damageRect.width) * 0.5);
 		
-		if(evt.current.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
-		{
-			if(damageRect.Contains(mousePos))
-			{
-				if(!GameManager.receiveDamage)
-				{
-					audio.volume = clickVolume;
-					audio.PlayOneShot(clickSound);
-					GameManager.receiveDamage = true;	
-					lastMouseTime = Time.time;
-				}
-			}
-			else if(dRect.Contains(mousePos))
-			{
-				if(GameManager.receiveDamage)
-				{
-					audio.volume = clickVolume;
-					audio.PlayOneShot(clickSound);
-					GameManager.receiveDamage = false;
-					lastMouseTime = Time.time;
-				}
-			}
-		}
-		
-		if(GameManager.receiveDamage)
-		{
-			GUI.DrawTexture(damageRect, receiveDamageOn);
-			GUI.DrawTexture(dRect, dontReceiveDamageOff);
-		}
-		else
-		{
-			GUI.DrawTexture(damageRect, receiveDamageOff);
-			GUI.DrawTexture(dRect, dontReceiveDamageOn);
-		}
+//		if(evt.current.type == EventType.MouseUp && evt.button == 0 && Time.time > lastMouseTime)
+//		{
+//			if(damageRect.Contains(mousePos))
+//			{
+//				if(!GameManager.receiveDamage)
+//				{
+//					audio.volume = clickVolume;
+//					audio.PlayOneShot(clickSound);
+//					GameManager.receiveDamage = true;	
+//					lastMouseTime = Time.time;
+//				}
+//			}
+//			else if(dRect.Contains(mousePos))
+//			{
+//				if(GameManager.receiveDamage)
+//				{
+//					audio.volume = clickVolume;
+//					audio.PlayOneShot(clickSound);
+//					GameManager.receiveDamage = false;
+//					lastMouseTime = Time.time;
+//				}
+//			}
+//		}
+//		
+//		if(GameManager.receiveDamage)
+//		{
+//			GUI.DrawTexture(damageRect, receiveDamageOn);
+//			GUI.DrawTexture(dRect, dontReceiveDamageOff);
+//		}
+//		else
+//		{
+//			GUI.DrawTexture(damageRect, receiveDamageOff);
+//			GUI.DrawTexture(dRect, dontReceiveDamageOn);
+//		}
 		
 		GUI.Label(new Rect(windowBackgroundRect.x + 20, windowBackgroundRect.y + 15, 200, 20), "GAME OPTIONS", titleStyle);	
 	}
