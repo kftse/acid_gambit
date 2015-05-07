@@ -8,6 +8,7 @@ public var fireRange : float = 0.4f;
 public var fireRate : float;
 public var fireSpeed : int;
 public var hitLayer : LayerMask;
+public var puzzle : SolvePuzzle;
 private var nextFire : float = 0;
 private var dead : boolean;
 private var anim : Animator;
@@ -88,6 +89,9 @@ function Hit(power : int) {
 		var v : Vector3 = gameObject.transform.position;
 		gameObject.transform.position = new Vector3(v.x, v.y + 0.25f, v.z);
 		anim.SetBool("dead", true);
+		
+		// notify puzzle, one has been solved
+		puzzle.SolveOne();
 		
 		// disapper after 3.9s
 		Destroy(gameObject, 3.9f);

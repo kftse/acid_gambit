@@ -16,12 +16,19 @@ class GameManager extends MonoBehaviour
 	
 	public var messageText : GUIText;
 	public var gameText : GUIText;
+	public var duration : float = 3.0f;
+	private var messages : Array;
+	private var mtime : float = 0;
 //	public var menu : MainMenuScreen;
 
 	public var PauseEffectCameras : Camera[];
 	private var _paused : boolean;
 
 	function Start(){
+		messages = new Array();
+		messages.Push("I am so lucky, I can jump off from the helicopter");
+		messages.Push("But wait... where am I? Maybe it's better for me to look around");
+
 //		TrainingStatistics.ResetStatistics();
 //		
 //		Screen.lockCursor = true;
@@ -91,15 +98,21 @@ class GameManager extends MonoBehaviour
 		
 		Screen.lockCursor = !pause && !scores;
 		
-		// Message Text
-		var message : String;
-		if (time < 2)
-		 	message = "I am so lucky, I can jump off from the helicopter";
-		else if (time < 4)
-			message = "But wait... where am I? Maybe it's better for me to look around";
-		else
-			message = "";
-		messageText.text = message;
+		ShowMessage();
+	}
+	
+	function ShowMessage(){
+//		Debug.Log("messages: " + messages.length + ", showing: " + (mtime > time));
+		if (mtime > time) 
+			return; // keep showing message
+		
+		messageText.text = "";
+		var t : float;
+		if (messages.length > 0){
+			mtime = time + duration;
+			messageText.text = messages[0];
+			messages.RemoveAt(0);
+		}
 	}
 	
 	function StartGame(){
@@ -144,5 +157,11 @@ class GameManager extends MonoBehaviour
 //
 //            blurEffect.enabled = state;
 //        }
+    }
+    
+    // Delegate
+    
+    function PuzzleSolved(message : String){
+    	messages.Push(message);
     }
 }
