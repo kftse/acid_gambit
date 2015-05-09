@@ -14,24 +14,25 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 	public var crouchRunStrafeSpeed : float = 5;
 	public var crouchWalkSpeed : float = 1.8;
 	public var crouchWalkStrafeSpeed : float = 1.8;
-
     public var radarObject : GameObject;
-	
 	public var maxRotationSpeed : float = 540;
-	
 	public var weaponSystem : GunManager;
 	public var minCarDistance : float;
-	
-	public var soldierCamera : Camera;
-	
+	public var soldierCamera : Camera;	
 //	public var chat : uLinkChatGUI;
-		
+	public var gameManager : GameManager;
+
 	static public var dead : boolean;
 	
 	// Public variables hidden in inspector
 	
 	@HideInInspector
 	public var walk : boolean;
+	
+	@HideInInspector
+	public var alwaysRun : boolean;
+	
+	private var alwaysRunTimer : float;
 	
 	@HideInInspector
 	public var crouch : boolean;
@@ -110,6 +111,8 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 		soldierTransform = transform;
 
 		walk = true;
+		alwaysRun = !walk;
+		alwaysRunTimer = 0;
 		aim = false;
 		reloading = false;
 
@@ -190,15 +193,12 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 			
 			if(!dead)
 			{
-//				if (networkView.isMine)
-//				{
-//					if (chat.isTyping)
-//					{
+//				if (networkView.isMine){
+//					if (chat.isTyping){
 //						moveDir = Vector3.zero;
 //						motor.canControl = false;
-//					}
-//					else
-//					{
+//					} else {
+
 				GetUserInputs();
 				moveDir = transform.TransformDirection(new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical")));
 				jump = Input.GetButton("Jump");
@@ -285,8 +285,18 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 		
 		crouch |= dead;
 		
-		//Check if the user wants the soldier to walk
-		walk = (Input.GetKey(KeyCode.LeftShift) && !dead) || moveDir == Vector3.zero || crouch;
+		// trigger always run
+		if (Input.GetKey(KeyCode.Z)){
+			if (alwaysRunTimer < Time.time){
+				// it will triggle many times in one press, skip them
+				alwaysRunTimer = Time.time + 0.5; 
+				alwaysRun =! alwaysRun;
+				Debug.Log("[SoldierController] alwaysRun: " + alwaysRun);
+			}
+		}
+		
+		// Check if the user wants the soldier to walk
+		walk = (!alwaysRun && !Input.GetKey(KeyCode.LeftShift) && !dead) || moveDir == Vector3.zero || crouch;
 	}
 
 	@RPC

@@ -19,7 +19,9 @@ class GameManager extends MonoBehaviour
 	public var tipText : GUIText;
 	public var duration : float = 3.0f;
 	private var messages : Array;
-	private var mtime : float = 0;
+	private var tips : Array;
+	private var mtime : float = .0f;
+	private var ttime : float = .0f;
 //	public var menu : MainMenuScreen;
 
 	public var PauseEffectCameras : Camera[];
@@ -27,10 +29,18 @@ class GameManager extends MonoBehaviour
 
 	function Start(){
 		messages = new Array();
-		messages.Push("I am so lucky, I can jump off from the helicopter");
-		messages.Push("But wait... where am I?");
-		messages.Push("Maybe it's better for me to look around");
-
+		tips = new Array();
+		
+		PuzzleSolved([
+			"I am so lucky, I can jump off from the helicopter",
+			"But wait... where am I?",
+			"Maybe it's better for me to look around"]);
+		
+		AddTip("Press Z to enable / disable Auto-Run Mode");
+		AddTip("Press Space to jump");
+		AddTip("Right click to aim");
+		AddTip("Left click to shoot");
+		
 //		TrainingStatistics.ResetStatistics();
 //		
 //		Screen.lockCursor = true;
@@ -101,6 +111,7 @@ class GameManager extends MonoBehaviour
 		Screen.lockCursor = !pause && !scores;
 		
 		ShowMessage();
+		ShowTip();
 	}
 	
 	function ShowMessage(){
@@ -115,6 +126,24 @@ class GameManager extends MonoBehaviour
 			messageText.text = messages[0];
 			messages.RemoveAt(0);
 		}
+	}
+	
+	function ShowTip(){
+//		Debug.Log("tips: " + tips.length + ", showing: " + (ttime > time));
+		if (ttime > time) 
+			return; // keep showing tip
+		
+		tipText.text = "";
+		var t : float;
+		if (tips.length > 0){
+			ttime = time + duration * 3.5;
+			tipText.text = tips[0];
+			tips.RemoveAt(0);
+		}
+	}
+	
+	function AddTip(tip : String){
+		tips.Add(tip);
 	}
 	
 	function StartGame(){
@@ -161,7 +190,6 @@ class GameManager extends MonoBehaviour
 //        }
     }
     
-    // Delegate
     function PuzzleSolved(message : String){
     	messages.Push(message);
     }
