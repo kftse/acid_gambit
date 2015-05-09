@@ -16,6 +16,7 @@ class GameManager extends MonoBehaviour
 	
 	public var messageText : GUIText;
 	public var gameText : GUIText;
+	public var tipText : GUIText;
 	public var duration : float = 3.0f;
 	private var messages : Array;
 	private var mtime : float = 0;
