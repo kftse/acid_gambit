@@ -89,7 +89,7 @@ class SolvePuzzleGreen extends SolvePuzzle
 		Destroy(this.digitBoard, this.soundSource.clip.length);
 				
 		// notify game manager puzzle solved
-		gameManager.PuzzleSolved("Something happen at the back, let's go back to check!");
+		gameManager.PuzzleSolved("Let's go ahead!");
 	}
 
 	// An API for digitTriggers to notify this script

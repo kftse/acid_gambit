@@ -161,9 +161,13 @@ class GameManager extends MonoBehaviour
     }
     
     // Delegate
-    
     function PuzzleSolved(message : String){
     	messages.Push(message);
+    }
+    
+    function PuzzleSolved(message : String[]){
+    	for (var msg: String in message)
+    		PuzzleSolved(msg);
     }
     
     function GameEnd(win : boolean){
