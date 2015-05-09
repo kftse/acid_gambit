@@ -1,5 +1,23 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &116034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 416034}
+  - 33: {fileID: 3316034}
+  - 65: {fileID: 6516034}
+  - 23: {fileID: 2316034}
+  m_Layer: 10
+  m_Name: DigitBoardTitle
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &133754
 GameObject:
   m_ObjectHideFlags: 1
@@ -34,7 +52,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &184736
 GameObject:
   m_ObjectHideFlags: 1
@@ -199,6 +217,7 @@ GameObject:
   - 64: {fileID: 6491934}
   - 23: {fileID: 2391934}
   - 82: {fileID: 8295580}
+  - 114: {fileID: 11416034}
   m_Layer: 10
   m_Name: DigitBoard
   m_TagString: DigitBoard
@@ -206,6 +225,18 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!4 &416034
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0, z: -6.90999985}
+  m_LocalScale: {x: 13, y: .100000001, z: 3}
+  m_Children: []
+  m_Father: {fileID: 491934}
+  m_RootOrder: 2
 --- !u!4 &433754
 Transform:
   m_ObjectHideFlags: 1
@@ -353,12 +384,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 191934}
-  m_LocalRotation: {x: .405579776, y: .579228044, z: -.579227984, w: .405579656}
-  m_LocalPosition: {x: -2.56999993, y: 2.98000002, z: 62.5499992}
+  m_LocalRotation: {x: .00781062851, y: .704511166, z: -.709622979, w: -.00618415838}
+  m_LocalPosition: {x: 8.30000019, y: 9.61999989, z: 79.2300034}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 468934}
   - {fileID: 489688}
+  - {fileID: 416034}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!12 &1268934
@@ -418,6 +450,26 @@ EllipsoidParticleEmitter:
   m_OneShot: 0
   m_Ellipsoid: {x: 1, y: 0, z: 1}
   m_MinEmitterRange: 1
+--- !u!23 &2316034
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116034}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 9d5ad13860b4a4fadb8b65ca8374cd24, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!23 &2391934
 Renderer:
   m_ObjectHideFlags: 1
@@ -468,6 +520,13 @@ ParticleRenderer:
     x Tile: 1
     y Tile: 1
     cycles: 1
+--- !u!33 &3316034
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116034}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!33 &3391934
 MeshFilter:
   m_ObjectHideFlags: 1
@@ -503,6 +562,18 @@ MeshCollider:
   m_SmoothSphereCollisions: 0
   m_Convex: 0
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!65 &6516034
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 116034}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!65 &6533754
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -669,6 +740,29 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &11416034
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 191934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc854c5c636684cbeba9b2278a0afbb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundSource: {fileID: 8295580}
+  soundClips:
+  - {fileID: 8300000, guid: 1792989a5a33779428d2dbe9a9430605, type: 3}
+  - {fileID: 8300000, guid: 28d9943cf1a4c406482b3256c64765fe, type: 3}
+  - {fileID: 8300000, guid: d7e60c04a57fb4b0e8c10ed4d3c40541, type: 3}
+  boardTitle: {fileID: 2316034}
+  boardTextures:
+  - {fileID: 2800000, guid: 6afb9fd7eb88842758b594f2bde3fdc3, type: 3}
+  - {fileID: 2800000, guid: 4e5547a9014324e13acd4ccdf5c6f60e, type: 3}
+  - {fileID: 2800000, guid: 0ee51b42ed0094095b221e6cce83246e, type: 3}
+  - {fileID: 2800000, guid: 0ea8f4571c9a445239b56fc85d991a99, type: 3}
+  - {fileID: 2800000, guid: 42efc2c2458ae412789f7b3d06ed19f7, type: 3}
 --- !u!114 &11450614
 MonoBehaviour:
   m_ObjectHideFlags: 1
