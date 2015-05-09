@@ -7,12 +7,8 @@
 class SolvePuzzleGreen extends SolvePuzzle
 {
 	public var obstacle : GameObject;
-	public var digitBoard : GameObject;
+	public var digitBoard : DigitBoard;
 	public var torches : GameObject[];
-	
-	public var soundSource : AudioSource;
-	public var correctSoundEffect : AudioClip;
-	public var incorrectSoundEffect : AudioClip;
 	
 	protected var answers : Array;
 
@@ -61,9 +57,11 @@ class SolvePuzzleGreen extends SolvePuzzle
 		expect = this.answers[this.solved];
 		
 		if (expect.Equals(answer)) {
+			this.digitBoard.PlaySoundClip("correct");
 			this.lightUpTorch(this.solved);
 			this.solved++;
 		} else {
+			this.digitBoard.PlaySoundClip("wrong");
 			this.solved = 0;
 			this.resetPuzzles();
 		}
@@ -80,13 +78,8 @@ class SolvePuzzleGreen extends SolvePuzzle
 		// Destroy the obstacle
 		this.obstacle.SetActive(false);
 		
-		// Play sound, ignite digitboard and destroy digitBoard
-		var flames : GameObject;
-		flames = this.digitBoard.transform.Find("flames").gameObject;
-		Debug.Log(flames.ToString);
-		flames.SetActive(true);
-		this.soundSource.Play();
-		Destroy(this.digitBoard, this.soundSource.clip.length);
+		// Destroy digitBoard
+		this.digitBoard.Destroy();
 				
 		// notify game manager puzzle solved
 		gameManager.PuzzleSolved("Let's go ahead!");
