@@ -91,7 +91,7 @@ function Hit(power : int) {
 		anim.SetBool("dead", true);
 		
 		// notify puzzle, one has been solved
-		puzzle.SolveOne();
+		if (puzzle) puzzle.SolveOne();
 		
 		// disapper after 3.9s
 		Destroy(gameObject, 3.9f);
