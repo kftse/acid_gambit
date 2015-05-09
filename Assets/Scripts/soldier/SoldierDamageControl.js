@@ -10,6 +10,7 @@ class SoldierDamageControl extends MonoBehaviour
 	public var dyingHealthPoint : int = 20;
 	public var hpBar : UI.Slider;
 	public var heartImage : UI.Image;
+	public var gameManager : GameManager; 
 	
 	// HP recover
 	public var recover : int = 1;
@@ -18,6 +19,10 @@ class SoldierDamageControl extends MonoBehaviour
 	
 	public var hitSound : AudioClip;
 	public var dyingSound : AudioClip;
+	
+	function Start(){
+		updatePlayerStatUI();
+	}
 	
 	function Update(){
 		// HP recover
@@ -38,7 +43,11 @@ class SoldierDamageControl extends MonoBehaviour
 		currentHealthPoint -= power;
 		Debug.Log("[Player] Destruct -" + power + " = " + currentHealthPoint);
 		updatePlayerStatUI();
-		if (currentHealthPoint <= dyingHealthPoint){
+		
+		if (currentHealthPoint <= 0){
+			Debug.Log("[Player] Die");
+			if(gameManager) gameManager.GameEnd(false);
+		} else if (currentHealthPoint <= dyingHealthPoint){
 			//TODO - play dying audio clip
 		}
 	}

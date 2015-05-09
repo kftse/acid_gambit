@@ -8,7 +8,6 @@ class SolvePuzzleWhite extends SolvePuzzle
 
 	function SolveOne(){
 		super.SolveOne();
-		if (IsSolved())
-			gameManager.GameEnd(true);
+		if (IsSolved() && gameManager) gameManager.GameEnd(true);
 	}
 }
