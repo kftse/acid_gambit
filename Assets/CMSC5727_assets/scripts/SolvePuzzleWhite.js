@@ -1,7 +1,5 @@
 ﻿#pragma strict
 
-public var gameManager: GameManager;
-
 class SolvePuzzleWhite extends SolvePuzzle
 {
 	function Start(){
@@ -10,7 +8,7 @@ class SolvePuzzleWhite extends SolvePuzzle
 
 	function SolveOne(){
 		super.SolveOne();
-		if (solved == puzzles)
+		if (IsSolved())
 			gameManager.GameEnd(true);
 	}
 }

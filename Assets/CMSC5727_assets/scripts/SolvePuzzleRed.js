@@ -8,20 +8,21 @@ class SolvePuzzleRed extends SolvePuzzle
 	public var explodeSound : AudioClip;
 	public var aliens : GameObject[];
 	public var obstacle : GameObject;
-	public var gameManager: GameManager;
 
 	function Start(){
+		this.puzzleName = "PuzzleRed";
 		puzzles = aliens.Length;
 	}
 	
 	function SolveOne(){
 		super.SolveOne();
-		if (solved == puzzles)
+		if (this.IsSolved()) {
 			Solved();
+		}		
 	}
 	
 	function Solved(){
-		Debug.Log("[SolvePuzzleRed] Solved");
+		super.Solved();
 		
 		// play sound and remove obstacle
 		audioSource.PlayOneShot(explodeSound, 1.0);

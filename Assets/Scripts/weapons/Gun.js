@@ -406,11 +406,6 @@ class Gun extends MonoBehaviour
 		
 		if(body != null)
 		{
-			if(body.gameObject.layer != 10 && !body.gameObject.name.ToLower().Contains("door"))
-			{
-				body.isKinematic = false;
-			}
-		
 			if(!body.isKinematic)
 			{
     			var direction : Vector3 = hit.collider.transform.position - weaponTransformReference.position;
