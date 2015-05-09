@@ -179,7 +179,7 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 	*/
 	function Update()
 	{
-		if(!enabled || GameManager.pause || GameManager.scores)
+		if(!enabled || GameManager.pause || GameManager.scores || GameManager.end)
 		{
 			moveDir = Vector3.zero;
 			motor.canControl = false;

@@ -13,6 +13,7 @@ class GameManager extends MonoBehaviour
 	static public var scores : boolean;
 	static public var time : float;
 	static public var running;
+	static public var end : boolean;
 	
 	public var messageText : GUIText;
 	public var gameText : GUIText;
@@ -36,10 +37,12 @@ class GameManager extends MonoBehaviour
 			"But wait... where am I?",
 			"Maybe it's better for me to look around"]);
 		
-		AddTip("Press Z to enable / disable Auto-Run Mode");
-		AddTip("Press Space to jump");
-		AddTip("Right click to aim");
-		AddTip("Left click to shoot");
+		AddTips([
+			"Press Z to enable / disable Auto-Run Mode",
+			"Press Space to jump",
+			"Right click to aim",
+			"Left click to shoot",
+			"Weapon has its fire range"]);
 		
 //		TrainingStatistics.ResetStatistics();
 //		
@@ -79,7 +82,13 @@ class GameManager extends MonoBehaviour
 	
 	function Update(){
 	
-		if (!pause && running) time += Time.deltaTime;
+		if (!pause && running && !end) time += Time.deltaTime;
+		
+		if (end && Input.GetKeyDown(KeyCode.R)){
+			Application.LoadLevel(Application.loadedLevel);
+			end = false;
+			return;
+		}
 		
 		if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)){
 			pause = !pause;
@@ -142,12 +151,18 @@ class GameManager extends MonoBehaviour
 		}
 	}
 	
+	function AddTips(tips : String[]){
+    	for (var tip: String in tips)
+    		AddTip(tip);
+    }
+	
 	function AddTip(tip : String){
 		tips.Add(tip);
 	}
 	
 	function StartGame(){
 		running = true;
+		end = false;
 
 //        if (gamePlaySoldier != null){
 //            if (!gamePlaySoldier.active)
@@ -194,12 +209,13 @@ class GameManager extends MonoBehaviour
     	messages.Push(message);
     }
     
-    function PuzzleSolved(message : String[]){
-    	for (var msg: String in message)
-    		PuzzleSolved(msg);
+    function PuzzleSolved(messages : String[]){
+    	for (var message: String in messages)
+    		PuzzleSolved(message);
     }
     
     function GameEnd(win : boolean){
+    	end = true;
     	gameText.text = win? "Congratulations! You Win!": "Game Over!";
     }
 }
