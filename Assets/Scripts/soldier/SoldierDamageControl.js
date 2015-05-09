@@ -3,7 +3,9 @@
 #pragma downcast
 
 class SoldierDamageControl extends MonoBehaviour
-{	
+{
+	public var controller : SoldierController;
+	
 	// HP related
 	public var maxHealthPoint : int = 100;
 	public var currentHealthPoint : int = 100;
@@ -17,6 +19,7 @@ class SoldierDamageControl extends MonoBehaviour
 	public var recoverTime : float = 2;
 	private var nextRecover : float = 0;
 	
+	public var soundSource : AudioSource;
 	public var hitSound : AudioClip;
 	public var dyingSound : AudioClip;
 	
@@ -39,16 +42,26 @@ class SoldierDamageControl extends MonoBehaviour
 		hpBar.value = currentHealthPoint;
 	}
 	
-	function Destruct(power : int) {
+	// Define API similars to Enemy.js
+	function Hit (power : int) {
 		currentHealthPoint -= power;
 		Debug.Log("[Player] Destruct -" + power + " = " + currentHealthPoint);
-		updatePlayerStatUI();
+
+		this.soundSource.PlayOneShot(this.hitSound, 1.0);
+		this.updatePlayerStatUI();
 		
 		if (currentHealthPoint <= 0){
 			Debug.Log("[Player] Die");
-			if(gameManager) gameManager.GameEnd(false);
-		} else if (currentHealthPoint <= dyingHealthPoint){
-			//TODO - play dying audio clip
+
+			this.controller.dead = true;
+			this.soundSource.PlayOneShot(this.dyingSound, 1.0);
+
+			this.gameManager.GameEnd(false);
 		}
+	}
+
+	// Adapt explosion API to our Hit()
+	function Destruct(power : int) {
+		this.Hit(power);
 	}
 }

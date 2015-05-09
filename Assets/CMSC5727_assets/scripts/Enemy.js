@@ -13,10 +13,12 @@ private var nextFire : float = 0;
 private var dead : boolean;
 private var anim : Animator;
 private var player : GameObject;
+private var playerController : SoldierController;
 
 function Awake () {
 	anim = GetComponent.<Animator>();
 	player = GameObject.FindGameObjectWithTag("Player");
+	this.playerController = player.GetComponent("SoldierController");
 }
 
 function Start () {
@@ -58,14 +60,16 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
 }
 
 function Fire(t : Transform){
-	var grenade : GameObject = GameObject.Instantiate(bullet, t.position, t.rotation);
-	var rigidbody : Rigidbody = grenade.rigidbody;
-		
-	if (grenade.rigidbody == null)
-		grenade.AddComponent("Rigidbody");	
-	
-	grenade.rigidbody.useGravity = true;
-	grenade.rigidbody.velocity = t.TransformDirection(Vector3(0, 0, fireSpeed));
+	if (!this.playerController.dead) {
+		var grenade : GameObject = GameObject.Instantiate(bullet, t.position, t.rotation);
+		var rigidbody : Rigidbody = grenade.rigidbody;
+
+		if (grenade.rigidbody == null)
+			grenade.AddComponent("Rigidbody");	
+
+		grenade.rigidbody.useGravity = true;
+		grenade.rigidbody.velocity = t.TransformDirection(Vector3(0, 0, fireSpeed));
+	}
 }
 
 function EndHitAnimation(){
