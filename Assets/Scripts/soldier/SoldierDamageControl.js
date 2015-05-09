@@ -21,7 +21,7 @@ class SoldierDamageControl extends MonoBehaviour
 	
 	function Update(){
 		// HP recover
-		if (nextRecover < Time.time){
+		if (currentHealthPoint < maxHealthPoint && nextRecover < Time.time){
 			currentHealthPoint = Mathf.Min(currentHealthPoint + recover, maxHealthPoint);
 			Debug.Log("[Player] Recover +" + recover + " = " + currentHealthPoint);
 			updatePlayerStatUI();

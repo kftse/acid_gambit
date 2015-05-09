@@ -29,7 +29,7 @@ class SolvePuzzleRed extends SolvePuzzle
 		Destroy(this, explodeSound.length);
 		
 		// notify game manager puzzle solved
-		gameManager.PuzzleSolved("Something happen at the back, let's go back to check!");
+		if (gameManager) gameManager.PuzzleSolved("Something happen at the back, let's go back to check!");
 	}
 }
 

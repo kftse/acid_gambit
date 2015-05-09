@@ -27,7 +27,8 @@ class GameManager extends MonoBehaviour
 	function Start(){
 		messages = new Array();
 		messages.Push("I am so lucky, I can jump off from the helicopter");
-		messages.Push("But wait... where am I? Maybe it's better for me to look around");
+		messages.Push("But wait... where am I?");
+		messages.Push("Maybe it's better for me to look around");
 
 //		TrainingStatistics.ResetStatistics();
 //		
@@ -163,5 +164,9 @@ class GameManager extends MonoBehaviour
     
     function PuzzleSolved(message : String){
     	messages.Push(message);
+    }
+    
+    function GameEnd(win : boolean){
+    	gameText.text = win? "Congratulations! You Win!": "Game Over!";
     }
 }

@@ -2,8 +2,8 @@
 
 class SolvePuzzle extends MonoBehaviour 
 {
-    var puzzles : int;
-    var solved : int;
+    protected var puzzles : int;
+    protected var solved : int;
     
     function Start(){
     	solved = 0;
