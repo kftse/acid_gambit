@@ -40,6 +40,8 @@ class SolvePuzzleGreen extends SolvePuzzle
 			flame.SetActive(false);
 		}	
 		this.solved = 0;
+		
+		this.digitBoard.ChangeTexture(0);
 	}
 	
 	// Helper method lights up a torch
@@ -60,6 +62,7 @@ class SolvePuzzleGreen extends SolvePuzzle
 			this.digitBoard.PlaySoundClip("correct");
 			this.lightUpTorch(this.solved);
 			this.solved++;
+			this.digitBoard.ChangeTexture(this.solved);
 		} else {
 			this.digitBoard.PlaySoundClip("wrong");
 			this.solved = 0;

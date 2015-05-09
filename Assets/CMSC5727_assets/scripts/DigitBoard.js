@@ -4,9 +4,14 @@ class DigitBoard extends MonoBehaviour
 {
 	public var soundSource : AudioSource;
 	public var soundClips : AudioClip[];
+	public var boardTitle : Renderer;
+	public var boardTextures : Texture[];
 	
-	function Start () {
-
+	// API changes board's texture
+	function ChangeTexture(index : int) {
+		var t : Texture;
+		t = this.boardTextures[index];
+		this.boardTitle.material.mainTexture = t;
 	}
 	
 	// Play a sound clip from the given sound source
