@@ -217,5 +217,6 @@ class GameManager extends MonoBehaviour
     function GameEnd(win : boolean){
     	end = true;
     	gameText.text = win? "Congratulations! You Win!": "Game Over!";
+    	messages.Push("Press R to retry");
     }
 }

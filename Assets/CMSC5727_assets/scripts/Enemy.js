@@ -9,6 +9,7 @@ public var fireRate : float;
 public var fireSpeed : int;
 public var hitLayer : LayerMask;
 public var puzzle : SolvePuzzle;
+public var gameManager : GameManager;
 private var nextFire : float = 0;
 private var dead : boolean;
 private var anim : Animator;
