@@ -16,6 +16,7 @@ TagManager:
   - WhiteEnemy
   - DigitTriggers
   - DigitBoard
+  - BlueObstacle
   - 
   Builtin Layer 0: Default
   Builtin Layer 1: TransparentFX

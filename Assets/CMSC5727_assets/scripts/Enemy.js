@@ -61,7 +61,7 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
  		
  		// show message
  		if (!redBossMsg && gameObject.tag == "RedEnemy"){
- 			if (gameManager) gameManager.PuzzleSolved("Oh my god! What's that red monster?");
+ 			if (gameManager) gameManager.AddMessage("Oh my god! What's that red monster?");
  			redBossMsg = true;
  		}
 	}

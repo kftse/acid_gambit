@@ -40,8 +40,8 @@ class SoldierDamageControl extends MonoBehaviour
 				nextRecover = Time.time + recoverTime;
 			}
 		} else {
-			this.deathMaskAlpha += Time.deltaTime;
-			this.deathMaskAlpha = this.deathMaskAlpha > 1 ? 1 : this.deathMaskAlpha;
+			if (deathMask) deathMaskAlpha += Time.deltaTime;
+			if (deathMask) deathMaskAlpha = this.deathMaskAlpha > 1 ? 1 : this.deathMaskAlpha;
 		}
 		
 		updatePlayerStatUI();
@@ -58,40 +58,37 @@ class SoldierDamageControl extends MonoBehaviour
 			
 			var alphaValue : float;
 			alphaValue = 1 - hpPercent;
-			this.heartMask.color.a = alphaValue;
+			if (heartMask) heartMask.color.a = alphaValue;
 		} else {
-			this.deathMask.color.a = this.deathMaskAlpha;		
+			if (deathMask) deathMask.color.a = this.deathMaskAlpha;		
 		}
 	}
 	
 	// Wrap calls for killing player
 	function killPlayer() {
-		this.controller.dead = true;
-		this.soundSource.PlayOneShot(this.dyingSound, 1.0);
-
-		this.heartMask.color = Color.clear;
-
-		this.gameManager.GameEnd(false);		
+		controller.dead = true;
+		soundSource.PlayOneShot(this.dyingSound, 1.0);
+		if (heartMask) heartMask.color = Color.clear;
+		gameManager.GameEnd(false);		
 	}
 	
 	// Define API similars to Enemy.js
 	function Hit (power : int) {
-		this.currentHealthPoint -= power;
-		this.currentHealthPoint = this.currentHealthPoint < 0 ? 0 : this.currentHealthPoint;
+		currentHealthPoint -= power;
+		currentHealthPoint = this.currentHealthPoint < 0 ? 0 : this.currentHealthPoint;
 		Debug.Log("[Player] Destruct -" + power + " = " + currentHealthPoint);
 
-		this.soundSource.PlayOneShot(this.hitSound, 1.0);
-		this.updatePlayerStatUI();
+		soundSource.PlayOneShot(this.hitSound, 1.0);
+		updatePlayerStatUI();
 		
 		if (currentHealthPoint <= 0){
 			Debug.Log("[Player] Die");
-
-			this.killPlayer();
+			killPlayer();
 		}
 	}
 
 	// Adapt explosion API to our Hit()
 	function Destruct(power : int) {
-		this.Hit(power);
+		Hit(power);
 	}
 }

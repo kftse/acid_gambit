@@ -15,6 +15,7 @@ class GameManager extends MonoBehaviour
 	static public var running;
 	static public var end : boolean;
 	
+	public var greenSolved : boolean;
 	public var messageText : GUIText;
 	public var gameText : GUIText;
 	public var tipText : GUIText;
@@ -32,14 +33,14 @@ class GameManager extends MonoBehaviour
 		messages = new Array();
 		tips = new Array();
 		
-		PuzzleSolved([
+		AddMessage([
 			"I am so lucky, I can jump off from the helicopter",
 			"But wait... where am I?",
 			"Maybe it's better for me to look around",
 			"The road is blocked by a gaint red wall...",
-			"It's seems I can jump on the floating red box"]);
+			"It seems I can jump on the floating red box"]);
 		
-		AddTips([
+		AddTip([
 			"Press A/W/S/D to move",
 			"Press Z to enable / disable Auto-Run Mode",
 			"Press Space to jump",
@@ -140,6 +141,15 @@ class GameManager extends MonoBehaviour
 		}
 	}
 	
+	function AddMessage(message : String){
+    	messages.Push(message);
+    }
+    
+    function AddMessage(messages : String[]){
+    	for (var message: String in messages)
+    		AddMessage(message);
+    }
+    
 	function ShowTip(){
 //		Debug.Log("tips: " + tips.length + ", showing: " + (ttime > time));
 		if (ttime > time) 
@@ -154,7 +164,7 @@ class GameManager extends MonoBehaviour
 		}
 	}
 	
-	function AddTips(tips : String[]){
+	function AddTip(tips : String[]){
     	for (var tip: String in tips)
     		AddTip(tip);
     }
@@ -166,6 +176,7 @@ class GameManager extends MonoBehaviour
 	function StartGame(){
 		running = true;
 		end = false;
+		greenSolved = false;
 
 //        if (gamePlaySoldier != null){
 //            if (!gamePlaySoldier.active)
@@ -208,14 +219,7 @@ class GameManager extends MonoBehaviour
 //        }
     }
     
-    function PuzzleSolved(message : String){
-    	messages.Push(message);
-    }
     
-    function PuzzleSolved(messages : String[]){
-    	for (var message: String in messages)
-    		PuzzleSolved(message);
-    }
     
     function GameEnd(win : boolean){
     	end = true;

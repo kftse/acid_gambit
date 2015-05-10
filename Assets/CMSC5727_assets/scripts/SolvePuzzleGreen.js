@@ -85,7 +85,11 @@ class SolvePuzzleGreen extends SolvePuzzle
 		this.digitBoard.Destroy();
 				
 		// notify game manager puzzle solved
-		gameManager.PuzzleSolved("Let's go ahead!");
+		gameManager.AddMessage([
+			"Bingo! CSMC5727",
+			"It seems the road is blocked by the blue rock", 
+			"I've to go back to find another way"]);
+		gameManager.greenSolved = true;
 	}
 
 	// An API for digitTriggers to notify this script

@@ -100,6 +100,8 @@ class Gun extends MonoBehaviour
 	
 	public var power : int = 1; // added by Carlos
 
+	public var gameManager : GameManager;
+
 	function Start()
 	{
 		soldierCamera = GameObject.Find("Soldier Camera").GetComponent.<SoldierCamera>();
@@ -454,8 +456,11 @@ class Gun extends MonoBehaviour
 			case "BlueEnemy":
 				go = GameObject.Instantiate(blueEnemyParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
 				break;
-			default:
-				return;
+			case "BlueObstacle":
+				go = GameObject.Instantiate(waterParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
+				if (gameManager && gameManager.greenSolved)
+					gameManager.AddMessage("I've to go back to find another way");
+				break;
 		}
 		
 		go.layer = hit.collider.gameObject.layer;
