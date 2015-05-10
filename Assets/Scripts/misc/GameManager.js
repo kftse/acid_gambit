@@ -4,7 +4,7 @@
 
 class GameManager extends MonoBehaviour
 {
-//	public var gamePlaySoldier : GameObject;
+	public var gamePlaySoldier : GameObject;
 //	public var soldierSmoke : ParticleEmitter;
 //	public var sarge : SargeManager;
 
@@ -46,7 +46,8 @@ class GameManager extends MonoBehaviour
 			"Press Space to jump",
 			"Right click to aim",
 			"Left click to shoot",
-			"Weapon has its fire range"]);
+			"Press Escape / P to pause / resume",
+			"Weapon has fire range"]);
 		
 //		TrainingStatistics.ResetStatistics();
 //		
@@ -94,7 +95,7 @@ class GameManager extends MonoBehaviour
 			return;
 		}
 		
-		if (Input.GetKeyDown(KeyCode.M) || Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)){
+		if (/*Input.GetKeyDown(KeyCode.M) || */Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)){
 			pause = !pause;
 //			menu.visible = pause;
 			
@@ -110,7 +111,7 @@ class GameManager extends MonoBehaviour
 
         if (_paused != pause){
             _paused = pause;
-            CameraBlur(pause);
+            // CameraBlur(pause); only available in Unity Pro
             
         	for (var i : int = 0; i < PauseEffectCameras.Length; i++){
         		var cam : Camera = PauseEffectCameras[i];
@@ -196,30 +197,29 @@ class GameManager extends MonoBehaviour
 //        }
 	}
 
+	/*
+	 * As with the other image effects, this effect is only available in Unity Pro
+	 */
     function CameraBlur(state : boolean){
-//        if (PauseEffectCameras == null) return;
-//        if (PauseEffectCameras.Length <= 0) return;
-//
-//        var blurEffect : BlurEffect;
-//
-//        for (var i : int = 0; i < PauseEffectCameras.Length; i++){
-//        	var cam : Camera = PauseEffectCameras[i];
-//            if (cam == null) continue;
-//
-//            blurEffect = cam.GetComponent("BlurEffect") as BlurEffect;
-//            
-//            if (blurEffect == null)
-//            {
-//                blurEffect = cam.gameObject.AddComponent("BlurEffect") as BlurEffect;
-//                blurEffect.iterations = cam.gameObject.name.IndexOf("radar") != -1 ? 1 : 2;
-//                blurEffect.blurSpread = 0.4;
-//            }    
-//
-//            blurEffect.enabled = state;
-//        }
+    	var PauseEffectCamerasLen : int = PauseEffectCameras == null? 0: PauseEffectCameras.Length;
+    	Debug.Log("[GameManager] state: " + state + ", cams: " + PauseEffectCamerasLen);
+        if (PauseEffectCamerasLen < 1) return;
+		
+        var blurEffect : BlurEffect;
+        
+        for (var i : int = 0; i < PauseEffectCameras.Length; i++){
+        	var cam : Camera = PauseEffectCameras[i];
+            if (cam == null) continue;
+
+            blurEffect = cam.GetComponent("BlurEffect") as BlurEffect;
+            if (blurEffect == null){
+                blurEffect = cam.gameObject.AddComponent("BlurEffect") as BlurEffect;
+                blurEffect.iterations = /*cam.gameObject.name.IndexOf("radar") != -1 ? 1 : 2*/ 3;
+                blurEffect.blurSpread = 0.6;
+            }
+            blurEffect.enabled = state;
+        }
     }
-    
-    
     
     function GameEnd(win : boolean){
     	end = true;
