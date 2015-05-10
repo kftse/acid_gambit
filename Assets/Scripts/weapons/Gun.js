@@ -32,6 +32,7 @@ class Gun extends MonoBehaviour
 	public var waterParticle : GameObject;
 	public var redEnemyParticle : GameObject;
 	public var blueEnemyParticle : GameObject;
+	public var whiteEnemyParticle : GameObject;
 
 	//How many shots the gun can take in one second
 	public var fireRate : float;
@@ -453,6 +454,9 @@ class Gun extends MonoBehaviour
 				break;
 			case "BlueEnemy":
 				go = GameObject.Instantiate(blueEnemyParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
+				break;
+			case "WhiteEnemy":
+				go = GameObject.Instantiate(whiteEnemyParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
 				break;
 			default:
 				return;
