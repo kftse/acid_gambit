@@ -58,9 +58,9 @@ class SoldierDamageControl extends MonoBehaviour
 			
 			var alphaValue : float;
 			alphaValue = 1 - hpPercent;
-			this.heartMask.color.a = alphaValue;
+			// this.heartMask.color.a = alphaValue;
 		} else {
-			this.deathMask.color.a = this.deathMaskAlpha;		
+			// this.deathMask.color.a = this.deathMaskAlpha;
 		}
 	}
 	
