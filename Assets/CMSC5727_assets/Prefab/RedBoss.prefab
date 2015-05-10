@@ -1711,7 +1711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c357aefed54474e62a3e5b9745201ed8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flightDistance: 60
+  flightDistance: 55
   rotationSpeed: 10
   energy: 5
   bullet: {fileID: 100002, guid: 61ad8894020422b42a6738b9fee1cf4d, type: 2}
@@ -1721,6 +1721,8 @@ MonoBehaviour:
   hitLayer:
     serializedVersion: 2
     m_Bits: 256
+  puzzle: {fileID: 0}
+  gameManager: {fileID: 0}
 --- !u!136 &13608986
 CapsuleCollider:
   m_ObjectHideFlags: 1

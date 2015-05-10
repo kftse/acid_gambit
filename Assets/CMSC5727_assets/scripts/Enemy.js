@@ -15,6 +15,7 @@ private var dead : boolean;
 private var anim : Animator;
 private var player : GameObject;
 private var playerController : SoldierController;
+private var redBossMsg :boolean = false;
 
 function Awake () {
 	anim = GetComponent.<Animator>();
@@ -56,6 +57,12 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
  				Fire(t1);
  				nextFire = Time.time + fireRate + 0.5f;
 // 			}
+ 		}
+ 		
+ 		// show message
+ 		if (!redBossMsg && gameObject.tag == "RedEnemy"){
+ 			if (gameManager) gameManager.PuzzleSolved("Oh my god! What's that red monster?");
+ 			redBossMsg = true;
  		}
 	}
 }

@@ -35,9 +35,12 @@ class GameManager extends MonoBehaviour
 		PuzzleSolved([
 			"I am so lucky, I can jump off from the helicopter",
 			"But wait... where am I?",
-			"Maybe it's better for me to look around"]);
+			"Maybe it's better for me to look around",
+			"The road is blocked by a gaint red wall...",
+			"It's seems I can jump on the floating red box"]);
 		
 		AddTips([
+			"Press A/W/S/D to move",
 			"Press Z to enable / disable Auto-Run Mode",
 			"Press Space to jump",
 			"Right click to aim",
