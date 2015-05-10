@@ -16,6 +16,7 @@ private var anim : Animator;
 private var player : GameObject;
 private var playerController : SoldierController;
 private var redBossMsg :boolean = false;
+private var whiteBossMsg :boolean = false;
 
 function Awake () {
 	anim = GetComponent.<Animator>();
@@ -63,6 +64,11 @@ function DetectPlayer(t1 : Transform, t2 : Transform){
  		if (!redBossMsg && gameObject.tag == "RedEnemy"){
  			if (gameManager) gameManager.AddMessage("Oh my god! What's that red monster?");
  			redBossMsg = true;
+ 		}
+ 		
+ 		if (!whiteBossMsg && gameObject.tag == "WhiteEnemy"){
+ 			if (gameManager) gameManager.AddMessage("Beware! It looks powerful");
+ 			whiteBossMsg = true;
  		}
 	}
 }
