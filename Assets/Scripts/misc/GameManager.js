@@ -26,8 +26,16 @@ class GameManager extends MonoBehaviour
 	private var ttime : float = .0f;
 //	public var menu : MainMenuScreen;
 
+	public var gamePlayClip : AudioClip;
+	public var gameOverClip : AudioClip;
+	private var bgm : AudioSource;
+
 	public var PauseEffectCameras : Camera[];
 	private var _paused : boolean;
+
+	function Awake(){
+		bgm = GetComponent.<AudioSource>();
+	}
 
 	function Start(){
 		messages = new Array();
@@ -170,6 +178,9 @@ class GameManager extends MonoBehaviour
 		running = true;
 		end = false;
 		greenSolved = false;
+		bgm.Stop();
+		bgm.clip = gamePlayClip;
+		bgm.Play();
 
 //        if (gamePlaySoldier != null){
 //            if (!gamePlaySoldier.active)
@@ -214,6 +225,9 @@ class GameManager extends MonoBehaviour
     }
     
     function GameEnd(win : boolean){
+    	bgm.Stop();
+    	bgm.clip = gameOverClip;
+		bgm.Play();
     	end = true;
     	pause = true;
     	if (!win){
