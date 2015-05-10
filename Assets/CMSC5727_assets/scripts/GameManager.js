@@ -54,6 +54,7 @@ class GameManager extends MonoBehaviour
 			"Press Space to jump",
 			"Right click to aim",
 			"Left click to shoot",
+			"Press R to reload",
 			"Press Escape / P to pause / resume",
 			"Weapon has fire range"]);
 		
