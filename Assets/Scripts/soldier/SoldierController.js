@@ -115,6 +115,7 @@ class SoldierController extends /*uLink.*/MonoBehaviour
 		alwaysRunTimer = 0;
 		aim = false;
 		reloading = false;
+		dead = false;
 
 		controller = gameObject.GetComponent("CharacterController");
 		motor = gameObject.GetComponent("CharacterMotor");
