@@ -51,13 +51,12 @@ class GameManager extends MonoBehaviour
 		
 //		TrainingStatistics.ResetStatistics();
 //		
-//		Screen.lockCursor = true;
-//		
-//		running = false;
-//		pause = false;
+		Screen.lockCursor = true;		
+		running = false;
+		pause = false;
 		scores = false;
-//		_paused = false;
-//		time = 0.0;
+		_paused = false;
+		time = 0.0;
 //
 //        var auxT : Transform;
 //        var hasCutscene : boolean = false;
@@ -98,34 +97,27 @@ class GameManager extends MonoBehaviour
 		if (/*Input.GetKeyDown(KeyCode.M) || */Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P)){
 			pause = !pause;
 //			menu.visible = pause;
-			
-            if(pause)
-            {
-                Time.timeScale = 0.00001;
-            }
-            else
-            {
-                Time.timeScale = 1.0;
-            }
+			Time.timeScale = pause ? 0.00001 : 1.0;
 		}
 
         if (_paused != pause){
             _paused = pause;
             // CameraBlur(pause); only available in Unity Pro
             
-        	for (var i : int = 0; i < PauseEffectCameras.Length; i++){
-        		var cam : Camera = PauseEffectCameras[i];
-            	if (cam == null) continue;
-            	if (cam.name != "radar_camera") continue;
-            	
-            	cam.enabled = !pause;
-        	}      
+//        	for (var i : int = 0; i < PauseEffectCameras.Length; i++){
+//        		var cam : Camera = PauseEffectCameras[i];
+//            	if (cam == null) continue;
+//            	if (cam.name != "radar_camera") continue;
+//            	cam.enabled = !pause;
+//        	}      
         }
 		
 		Screen.lockCursor = !pause && !scores;
 		
-		ShowMessage();
-		ShowTip();
+		if (!end){
+			ShowMessage();
+			ShowTip();
+		}
 	}
 	
 	function ShowMessage(){
@@ -223,7 +215,12 @@ class GameManager extends MonoBehaviour
     
     function GameEnd(win : boolean){
     	end = true;
+    	pause = true;
+    	if (!win){
+    		gamePlaySoldier.transform.rotation.x = 90;
+    		gamePlaySoldier.transform.position.y = -100;
+    	}
     	gameText.text = win? "Congratulations! You Win!": "Game Over!";
-    	messages.Push("Press R to retry");
+    	messageText.text = "Press R to retry";
     }
 }
