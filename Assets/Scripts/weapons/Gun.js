@@ -463,7 +463,7 @@ class Gun extends MonoBehaviour
 			case "BlueObstacle":
 				go = GameObject.Instantiate(waterParticle, hitPoint, Quaternion.FromToRotation(Vector3.up, hitUpDir)) as GameObject;
 				if (gameManager && gameManager.greenSolved)
-					gameManager.AddMessage("I've to go back to find another way");
+					gameManager.AddMessage(["I've to go back to find another way", "Maybe go down to the river"]);
 				break;
 			default:
 				return;
