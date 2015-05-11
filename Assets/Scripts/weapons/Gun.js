@@ -465,6 +465,8 @@ class Gun extends MonoBehaviour
 				if (gameManager && gameManager.greenSolved)
 					gameManager.AddMessage("I've to go back to find another way");
 				break;
+			default:
+				return;
 		}
 		
 		go.layer = hit.collider.gameObject.layer;
