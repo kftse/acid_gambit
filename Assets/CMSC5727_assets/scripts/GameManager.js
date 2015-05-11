@@ -19,7 +19,7 @@ class GameManager extends MonoBehaviour
 	public var messageText : GUIText;
 	public var gameText : GUIText;
 	public var tipText : GUIText;
-	public var duration : float = 3.0f;
+	public var duration : float = 4.5f;
 	private var messages : Array;
 	private var tips : Array;
 	private var mtime : float = .0f;
@@ -160,7 +160,7 @@ class GameManager extends MonoBehaviour
 		tipText.text = "";
 		var t : float;
 		if (tips.length > 0){
-			ttime = time + duration * 3.5;
+			ttime = time + duration * 1.8;
 			tipText.text = tips[0];
 			tips.RemoveAt(0);
 		}
