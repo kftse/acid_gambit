@@ -86,7 +86,7 @@ class SolvePuzzleGreen extends SolvePuzzle
 				
 		// notify game manager puzzle solved
 		gameManager.AddMessage([
-			"Bingo! CSMC5727",
+			"Bingo! CMSC5727",
 			"It seems the road is blocked by the blue rock", 
 			"I've to go back to find another way"]);
 		gameManager.greenSolved = true;
